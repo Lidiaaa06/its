@@ -30,33 +30,47 @@ int main()
 
    
   //controlla se il numero inserito dall'utente e' primo
-  int num,num2,count;
-  int div=2;
+#include <stdio.h>
 
-  printf("inserisci un numero: ");
-  scanf("%d", &num);
-  printf("inserisci il numero di numeri primi da visualizzare : ");
-  scanf("%d", &num2);
+int main() {
+    int num, num2;
 
-  do
-  {
-    count ++;
-    
-  do
-  {
-      int risult = num % div;
+    printf("Inserisci un numero di partenza: ");
+    scanf("%d", &num);
 
-      if (risult == 0)
-      {
-          printf("%d", num);
+    printf("Quanti numeri primi vuoi visualizzare? ");
+    scanf("%d", &num2);
 
-          return 0;
-      }
-     
-      div++;
-  } while (div < num);
+    int count = 0;   // quanti primi stampati
 
-   } while (count == num2);
-  
+    // ciclo principale: continua finché non stampiamo num2 primi
+    do {
+        int div = 2;
+        int primo = 1; // assumiamo sia primo
+
+        // controlla se num è primo
+        do {
+            if (num % div == 0) {
+                primo = 0;   // non è primo
+                break;
+            }
+            div++;
+        } while (div * div <= num);
+
+        if (num < 2) primo = 0; // i numeri <2 non sono primi
+
+        // se è primo, stampalo e aumenta il contatore
+        if (primo) {
+            printf("%d ", num);
+            count++;
+        }
+
+        num++; // passa al numero successivo
+
+    } while (count < num2);
+
+    return 0;
+}
+
 
 }
