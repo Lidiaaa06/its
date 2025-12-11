@@ -5,26 +5,47 @@
 #include <stdio.h>    
 
 
-//scrivi un codice che chieda all'utente dei numeri da inserire compresi tra 0 e 99, faccia la somma di essi e se supera 99 azzera e ricomici da zero continuando con i numeri che restano  e  se utente digita zero esce dal programma, 
+//scrivi un codice che chieda all'utente dei numeri da inserire compresi tra 0 e 99, 
+// faccia la somma di essi e se supera 99 azzera e ricomici da zero continuando con i numeri che restano  
+// se l'utente digita zero si esce dal programma e conta il numero di volte che il programma si ferma sullo zero 
+// e conta quante volte avviene l'overflow dei valori: quando da 99 passa a 0 e quando da 0 passa a 99
+
 
 int main()
 {
 	int n;
 	int somma=0;
-
+	int count = 0;
+	int overcount0=0;
+	int overcount99 = 0;
 	do
 	{
 		printf("Inserisci un valore: ");
 		scanf("%d", &n);
 
-		
+		int salva = somma;
 		somma += n;
 
 		if (somma >= 99)
 		{
 			somma =somma % 100;
+			overcount99++;
 		}
+
+		if (salva == 0 && somma == 99)
+		{
+			overcount0++;
+		}
+
+		if (somma == 0)
+		{
+			count++;
+		}
+
 		printf("il risultato e': %d\n",somma);
+		printf("il programma si e' fermato sullo zero %d volte \n", count);
+		printf("il programma e' passato da 99 a 0 %d volte \n", overcount99);
+		printf("il programma e' passato da 0 a 99 %d volte \n", overcount0);
 
 	} while (n != 0);
 	return 0;
