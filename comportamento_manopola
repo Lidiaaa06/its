@@ -1,0 +1,31 @@
+// simulazione-comportamento-manopola.cpp : Questo file contiene la funzione 'main', in cui inizia e termina l'esecuzione del programma.
+//
+#pragma warning (disable:4996)
+
+#include <stdio.h>    
+
+
+//scrivi un codice che chieda all'utente dei numeri da inserire compresi tra 0 e 99, faccia la somma di essi e se supera 99 azzera e ricomici da zero continuando con i numeri che restano  e  se utente digita zero esce dal programma, 
+
+int main()
+{
+	int n;
+	int somma=0;
+
+	do
+	{
+		printf("Inserisci un valore: ");
+		scanf("%d", &n);
+
+		
+		somma += n;
+
+		if (somma >= 99)
+		{
+			somma =somma % 100;
+		}
+		printf("il risultato e': %d\n",somma);
+
+	} while (n != 0);
+	return 0;
+}
